@@ -1,24 +1,41 @@
 package com.example.iskulubuapp
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.iskulubuapp.Screens.Login
 import com.example.iskulubuapp.Screens.SplashScreen
 import com.example.iskulubuapp.ui.theme.IskulubuappTheme
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
-            IskulubuappTheme {
-                // A surface container using the 'background' color from the theme
-                Surface() {
-                    SplashScreen()
+            IskulubuappTheme(darkTheme = false) {
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = "SplashScreen") {
+                    composable("SplashScreen"){
+                        SplashScreen()
+                    }
+                    composable("Login"){
+                        Login()
+                    }
+
+                    object : CountDownTimer(2500, 1000){
+                        override fun onTick(millisUntilFinished: Long) {
+
+                        }
+
+                        override fun onFinish() {
+                            navController.navigate("Login")
+                        }
+                    }.start()
                 }
             }
         }

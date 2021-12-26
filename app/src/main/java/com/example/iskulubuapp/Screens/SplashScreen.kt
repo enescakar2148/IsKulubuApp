@@ -1,6 +1,5 @@
 package com.example.iskulubuapp.Screens
 
-import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
@@ -24,8 +23,9 @@ fun SplashScreen(){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(10.dp, bottom = 175.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Image(
                 painter = painterResource(id = R.drawable.logo),
@@ -48,6 +48,6 @@ fun SplashScreen(){
 
 @Preview(showBackground = true)
 @Composable
-fun splashPreview(){
+fun SplashPreview(){
     SplashScreen()
 }
